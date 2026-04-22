@@ -21,7 +21,7 @@ export default function Login() {
       <div className="flex flex-col justify-center items-center space-y-6 size-full">
         <div className="bg-background dark:bg-neutral-900 shadow-lg p-8 3xl:p-10 border border-border/50 rounded-2xl w-full max-w-100 3xl:max-w-[480px]">
           <h1 className="font-semibold text-xl 3xl:text-2xl text-center">
-            Welcome to Law Remedy
+            Welcome to Aarambha
           </h1>
 
           <form onSubmit={handleLoginFormSubmit} className="space-y-6 pt-8">
