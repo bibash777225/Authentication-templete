@@ -5,6 +5,9 @@ export const endpoints = {
   },
   user: {
     getAll: "/api/user",
-    profile: "/api/user/profile",
+    profile: "/auth/me",
+  },
+  dashboard: {
+    getdata: "/api/dashboard",
   },
 } as const;
