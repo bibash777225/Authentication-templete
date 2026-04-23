@@ -1,5 +1,5 @@
 import { ROUTES } from "@/routes/routes";
-import { Briefcase, FileText, Scale, Settings, Users } from "lucide-react";
+import { Briefcase, FileText, Info, Scale, Settings, Users } from "lucide-react";
 import { Link } from "react-router";
 
 type QuickAction = {
@@ -19,9 +19,9 @@ const actions: QuickAction[] = [
     iconBg: "bg-amber-100",
   },
   {
-    title: "New Practice Area",
-    href: ROUTES.practiceArea.base,
-    icon: Scale,
+    title: "About",
+    href: ROUTES.about.editVison,
+    icon: Users,
     iconColor: "text-red-600",
     iconBg: "bg-red-100",
   },

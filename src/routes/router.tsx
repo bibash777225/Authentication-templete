@@ -6,6 +6,7 @@ import PrivateLayout from "@/components/layouts/private-layout";
 import Dashboard from "@/pages/dashboard/dashboard";
 import MainLayout from "@/components/layouts/main-layout";
 import Providers from "@/provider";
+import Aboutcontent from "@/pages/aboutcontent/aboutcontent";
 const publicRoutes: RouteObject[] = [
   {
     element: <PublicLayout />,
@@ -25,8 +26,12 @@ const protectedRoutes: RouteObject[] = [
         path: "/",
         element: <Dashboard />,
       },
-    ]
-  }
+      {
+        path: ROUTES.cms.aboutContent,
+        element: <Aboutcontent />,
+      },
+    ],
+  },
 ];
 export const appRouter = createBrowserRouter([
   {

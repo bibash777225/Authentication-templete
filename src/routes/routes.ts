@@ -6,9 +6,13 @@ export const ROUTES = {
     editService: "/service/edit/:id",
     newService: "/new-service",
   },
-  practiceArea: {
-    base: "/practice-areas",
-    view: "/practice-area/details/:id",
+  about: {
+    editVison: "/vision/edit/:id",
+    mission: "/mission",
+    valuessection:{
+      create:"/values-section",
+      editMission:"/values-section/edit/:id"
+    }
   },
   blog: {
     base: "/all-blog",

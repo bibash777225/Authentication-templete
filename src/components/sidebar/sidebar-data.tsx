@@ -26,8 +26,8 @@ const sidebarData: SidebarData = [
 
   {
     icon: <MapPin />,
-    label: "Practice Areas",
-    link: ROUTES.practiceArea.base,
+    label: "About",
+    link: ROUTES.about.editVison,
   },
   {
     icon: <ClipboardPen />,
