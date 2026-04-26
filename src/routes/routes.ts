@@ -7,12 +7,12 @@ export const ROUTES = {
     newService: "/new-service",
   },
   about: {
-    editVison: "/vision/edit/:id",
+    Vison: "/vision",
     mission: "/mission",
-    valuessection:{
-      create:"/values-section",
-      editMission:"/values-section/edit/:id"
-    }
+    valuessection: {
+      create: "/values-section",
+      editMission: "/values-section/edit/:id",
+    },
   },
   blog: {
     base: "/all-blog",

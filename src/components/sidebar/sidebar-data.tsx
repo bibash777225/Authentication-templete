@@ -11,7 +11,6 @@ import {
 import { ROUTES } from "../../routes/routes";
 import type { SidebarData } from "./sidebar.types";
 
-
 const sidebarData: SidebarData = [
   {
     icon: <Home />,
@@ -27,7 +26,7 @@ const sidebarData: SidebarData = [
   {
     icon: <MapPin />,
     label: "About",
-    link: ROUTES.about.editVison,
+    // link: ROUTES.about.editVison,
   },
   {
     icon: <ClipboardPen />,
@@ -95,12 +94,12 @@ const sidebarData: SidebarData = [
         label: "About Page",
         children: [
           {
-            label: "Main Content",
-            link: ROUTES.cms.aboutmain,
+            label: "Mission",
+            link: ROUTES.about.mission,
           },
           {
-            label: "Bottom Content",
-            link: ROUTES.cms.aboutContent,
+            label: "Vission",
+            link: ROUTES.about.Vison,
           },
         ],
       },

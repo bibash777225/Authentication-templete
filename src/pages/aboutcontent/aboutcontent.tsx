@@ -13,7 +13,10 @@ import {
 import { setFormError } from "@/context/lib/helpers/error-helper";
 import PageHeader from "@/components/common-header/header";
 import { Button } from "@/components/ui/button";
-import { useGetAboutcontent, useUpdateAboutcontent } from "@/services/aboutcontent/aboutcontent";
+import {
+  useGetAboutcontent,
+  useUpdateAboutcontent,
+} from "@/services/about/aboutcontent";
 
 const Aboutcontent = () => {
   const { data: aboutcontent, isLoading } = useGetAboutcontent();

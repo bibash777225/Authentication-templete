@@ -21,24 +21,17 @@ export interface ApiResponse<T> {
   data: T;
 }
 
-export interface ApiSuccessResponse<T> {
-  status: number;
-  message: string;
-  data: T;
-}
-
 export interface ErrorResponse {
   statusCode: number;
   message: string[];
 }
 
-export type ImageDTO = {
+export type MediaDTO = {
   id: string;
   createdAt: string;
-  updatedAt: string;
-  deletedAt: string;
-  status: boolean;
-  creatorId: string;
-  type: string;
-  url: string;
+  filename: string;
+  originalName: string;
+  path: string;
+  mimeType: string;
+  size: number;
 } | null;

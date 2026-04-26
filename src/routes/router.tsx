@@ -7,6 +7,8 @@ import Dashboard from "@/pages/dashboard/dashboard";
 import MainLayout from "@/components/layouts/main-layout";
 import Providers from "@/provider";
 import Aboutcontent from "@/pages/aboutcontent/aboutcontent";
+import MissionPage from "@/pages/mission/mission-page";
+import VisionPage from "@/pages/vision/vision.page";
 const publicRoutes: RouteObject[] = [
   {
     element: <PublicLayout />,
@@ -29,6 +31,14 @@ const protectedRoutes: RouteObject[] = [
       {
         path: ROUTES.cms.aboutContent,
         element: <Aboutcontent />,
+      },
+      {
+        path: ROUTES.about.mission,
+        element: <MissionPage />,
+      },
+      {
+        path: ROUTES.about.Vison,
+        element: <VisionPage />,
       },
     ],
   },

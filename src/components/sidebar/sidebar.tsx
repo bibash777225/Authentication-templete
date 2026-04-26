@@ -77,8 +77,8 @@ const Sidebar = () => {
     const baseClasses =
       "flex items-center w-full py-2 text-sm font-medium rounded-md transition ease-in-out duration-150";
 
-    const activeClasses = "bg-secondary text-white";
-    const inactiveClasses = "text-gray-700 hover:bg-secondary hover:text-white";
+    const activeClasses = "bg-amber-500 text-zinc-900";
+    const inactiveClasses = "text-zinc-400 hover:bg-szinc-800 hover:text-zinc-100";
 
     return (
       <div key={item.label} className="w-full h-full">
@@ -135,7 +135,7 @@ const Sidebar = () => {
         )}
 
         {hasChildren && isExpanded && (
-          <div className="space-y-1 mt-1 ml-2 border-gray-200 border-l">
+          <div className="space-y-1 mt-1 ml-2 border-zinc-700 border-l">
             {item.children?.map((child) => renderSidebarItem(child, level + 1))}
           </div>
         )}
@@ -144,7 +144,7 @@ const Sidebar = () => {
   };
 
   return (
-    <nav className="hidden lg:block z-30 bg-white px-5 py-2.5 w-67.5 h-full overflow-y-auto">
+    <nav className="hidden lg:block z-30 bg-stone-900 px-5 py-2.5 w-67.5 h-full overflow-y-auto">
       <div className="flex flex-col gap-y-2 py-2 pr-1">
         {/* shows menu only when user can get some route */}
         {sidebarData.map((item) => renderSidebarItem(item))}
@@ -155,7 +155,7 @@ const Sidebar = () => {
       > */}
         <Button
           onClick={handleLogout}
-          className="bg-gray-100 hover:bg-red-400 hover:text-white text-left"
+          className="bg-zinc-800 text-zinc-400 hover:bg-red-500 hover:text-white text-left"
           variant={"ghost"}
         >
           Logout <LogOutIcon />

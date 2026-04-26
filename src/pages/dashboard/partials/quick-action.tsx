@@ -1,5 +1,5 @@
 import { ROUTES } from "@/routes/routes";
-import { Briefcase, FileText, Info, Scale, Settings, Users } from "lucide-react";
+import { Briefcase, FileText, Settings, Users } from "lucide-react";
 import { Link } from "react-router";
 
 type QuickAction = {
@@ -20,7 +20,7 @@ const actions: QuickAction[] = [
   },
   {
     title: "About",
-    href: ROUTES.about.editVison,
+    href: ROUTES.about.mission,
     icon: Users,
     iconColor: "text-red-600",
     iconBg: "bg-red-100",

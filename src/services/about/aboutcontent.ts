@@ -2,7 +2,7 @@
 import { HttpClient } from "@/context/lib/network/http-client";
 import { endpoints } from "@/core/constant/endpoint";
 import type { AboutcontentFormDTO } from "@/pages/aboutcontent/schema/aboutcontent.schema";
-import type { IGetAllAboutcontentDTO, IPatchAboutcontentDTO } from "@/types/aboutcontent/aboutcontent";
+import type { IGetAllAboutcontentDTO, IPatchAboutcontentDTO } from "@/types/about/aboutcontent";
 import type { GenericPaginationParams } from "@/types/global.interface";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
