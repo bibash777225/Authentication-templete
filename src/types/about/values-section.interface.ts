@@ -24,6 +24,6 @@ export interface IValueSectionUpdateDTO {
   description: string;
 }
 
-export type IValuessecResponseDTO=ApiResponse<IValueSection>
+export type IValuessecResponseDTO=ApiResponse<IValueSection[]>
 export type IValuessecCreateResponseDTO=ApiResponse<null>
 export type IValueSectionUpdateResponseDTO=ApiResponse<null>

@@ -4,6 +4,7 @@ import {
   HandCoins,
   Home,
   MapPin,
+  MessageSquareQuote,
   ScrollTextIcon,
   Settings,
   Users,
@@ -62,6 +63,11 @@ const sidebarData: SidebarData = [
     link: ROUTES.testimonials.base,
   },
   {
+    icon: <MessageSquareQuote/>,
+    label: "Get a Quote",
+    link: ROUTES.testimonials.base,
+  },
+  {
     icon: <Users />,
     label: "Content Management",
     children: [
@@ -86,10 +92,7 @@ const sidebarData: SidebarData = [
           },
         ],
       },
-      {
-        label: "Practice Area Page",
-        link: ROUTES.cms.practiceAreaContent,
-      },
+
       {
         label: "About Page",
         children: [
@@ -101,6 +104,14 @@ const sidebarData: SidebarData = [
             label: "Vission",
             link: ROUTES.about.Vison,
           },
+          {
+            label: "Value Section",
+            // link: ROUTES.about.valuessection,
+          },
+          {
+            label: "Company Info",
+            // link: ROUTES.about.valuessection,
+          },
         ],
       },
     ],
@@ -108,7 +119,7 @@ const sidebarData: SidebarData = [
 
   {
     icon: <Settings />,
-    label: "Organization Settings",
+    label: "Site Settings",
     link: ROUTES.orgSettings.base,
   },
 ];

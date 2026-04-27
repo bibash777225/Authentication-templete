@@ -11,7 +11,7 @@ export const ROUTES = {
     mission: "/mission",
     valuessection: {
       create: "/values-section",
-      editMission: "/values-section/edit/:id",
+      edit: "/values-section/edit/:id",
     },
   },
   blog: {
