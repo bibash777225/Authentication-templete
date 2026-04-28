@@ -6,6 +6,9 @@ export const ROUTES = {
     editService: "/service/edit/:id",
     newService: "/new-service",
   },
+  tools: {
+    base: "/tools",
+  },
   about: {
     Vison: "/vision",
     mission: "/mission",

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import type { useValuesSection } from "../hooks/use-values-section";
 import { Card } from "@/components/ui/card";
 import { DataTable } from "@/custom/data-table";
-import { createColumnHelper, type ColumnDef } from "@tanstack/react-table";
+import { createColumnHelper } from "@tanstack/react-table";
 import type { IValueSection } from "@/types/about/values-section.interface";
 import { ActionPopover } from "@/custom/customPopover/custom-popover";
 import { ROUTES } from "@/routes/routes";
@@ -62,7 +62,7 @@ export const ValuesSectionTable: React.FC<{
         />
       ),
     }),
-  ]as ColumnDef<IValueSection>[];
+  ];
 
   return (
     <Card className="p-5">

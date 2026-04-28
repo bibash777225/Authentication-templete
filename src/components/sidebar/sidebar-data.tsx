@@ -7,6 +7,7 @@ import {
   MessageSquareQuote,
   ScrollTextIcon,
   Settings,
+  ToolCaseIcon,
   Users,
 } from "lucide-react";
 import { ROUTES } from "../../routes/routes";
@@ -63,7 +64,7 @@ const sidebarData: SidebarData = [
     link: ROUTES.testimonials.base,
   },
   {
-    icon: <MessageSquareQuote/>,
+    icon: <MessageSquareQuote />,
     label: "Get a Quote",
     link: ROUTES.testimonials.base,
   },
@@ -121,6 +122,11 @@ const sidebarData: SidebarData = [
     icon: <Settings />,
     label: "Site Settings",
     link: ROUTES.orgSettings.base,
+  },
+  {
+    icon: <ToolCaseIcon />,
+    label: "Tools",
+    link: ROUTES.tools.base,
   },
 ];
 export default sidebarData;

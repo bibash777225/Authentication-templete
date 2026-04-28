@@ -1,5 +1,5 @@
 import { useValuesSection } from "./hooks/use-values-section";
-import { ValuesSectionTable } from "./partials/values-section-table";
+import { ValuesSectionTable } from "./partials/aboutvalues-section-table";
 
 
 

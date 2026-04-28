@@ -20,8 +20,9 @@ import { Loader2 } from "lucide-react";
 import React from "react";
 
 interface DataTableProps<TData> {
-  data: TData[] | undefined;
-  columns: ColumnDef<TData>[];
+  data?: TData[] | undefined;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  columns: ColumnDef<TData, any>[];
   isLoading?: boolean;
   getRowProps?: (row: Row<TData>) => React.HTMLAttributes<HTMLTableRowElement>;
 }

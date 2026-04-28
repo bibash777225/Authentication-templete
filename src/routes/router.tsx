@@ -9,6 +9,7 @@ import Providers from "@/provider";
 import Aboutcontent from "@/pages/aboutcontent/aboutcontent";
 import MissionPage from "@/pages/mission/mission-page";
 import VisionPage from "@/pages/vision/vision.page";
+import ToolsPage from "@/pages/tools/page";
 const publicRoutes: RouteObject[] = [
   {
     element: <PublicLayout />,
@@ -39,6 +40,10 @@ const protectedRoutes: RouteObject[] = [
       {
         path: ROUTES.about.Vison,
         element: <VisionPage />,
+      },
+      {
+        path: ROUTES.tools.base,
+        element: <ToolsPage />,
       },
     ],
   },

@@ -16,7 +16,7 @@ export const endpoints = {
     patch: `/vision`,
   },
   aboutValues: {
-    get:`/values-section`,
+    get: `/values-section`,
     create: "/values-section",
     patch: (id: string | number) => `/values-section${id}`,
   },
@@ -26,6 +26,13 @@ export const endpoints = {
   },
   dashboard: {
     getdata: "/api/dashboard",
+  },
+  tools: {
+    get: "/tools",
+    getById: (id: string | number) => `/tools/${id}`,
+    post: "/tools",
+    delete: (id: string | number) => `/tools/${id}`,
+    update: (id: string | number) => `/tools/${id}`,
   },
   media: {
     uploadOne: "/media/upload",
