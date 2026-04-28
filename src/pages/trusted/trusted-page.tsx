@@ -1,3 +1,4 @@
+
 import {
   Popover,
   PopoverContent,
@@ -5,20 +6,21 @@ import {
 } from "@/components/ui/popover";
 import { imageUrl } from "@/context/lib/helpers/image";
 import { DataTable } from "@/custom/data-table";
-import { useGetAllTools } from "@/services/homes/tools.api";
-import type { ITool } from "@/types/homes/tools.interface";
 import { createColumnHelper } from "@tanstack/react-table";
 import { EllipsisVertical } from "lucide-react";
-import ToolsUpdateDialog from "./partials/tools-update-dialog";
-import ToolsCreateDialog from "./partials/tools-create-dialog";
-import ToolsDeleteDialog from "./partials/tools-delete-dialog";
+import TrustedUpdateDialog from "./partials/trusted-update-dialog";
+import TrustedDeleteDialog from "./partials/trusted-delete-dialog";
+import TrustedCreateDialog from "./partials/trusted-create-dialog";
+import { useGetAllTrusted } from "@/services/homes/trusted.api";
+import type { ITrusted } from "@/types/homes/trusted.interface";
 
-const columnHelper = createColumnHelper<ITool>();
-const ToolsPage = () => {
-  const { data: toolsData } = useGetAllTools();
+
+const columnHelper = createColumnHelper<ITrusted>();
+const TrustedPage = () => {
+  const { data: trustedData } = useGetAllTrusted();
   const columns = [
     columnHelper.accessor("name", {}),
-    columnHelper.accessor("image", {
+    columnHelper.accessor("logo", {
       cell: ({ getValue }) => (
         <img
           crossOrigin="anonymous"
@@ -36,8 +38,8 @@ const ToolsPage = () => {
               <EllipsisVertical />
             </PopoverTrigger>
             <PopoverContent>
-              <ToolsUpdateDialog id={row.original.id} />
-              <ToolsDeleteDialog id={row.original.id} />
+              <TrustedUpdateDialog id={row.original.id} />
+              <TrustedDeleteDialog id={row.original.id} />
             </PopoverContent>
           </Popover>
         );
@@ -46,10 +48,10 @@ const ToolsPage = () => {
   ];
   return (
     <div>
-      <ToolsCreateDialog />
-      <DataTable columns={columns} data={toolsData?.data.data || []} />
+      <TrustedCreateDialog />
+      <DataTable columns={columns} data={trustedData?.data.data || []} />
     </div>
   );
 };
 
-export default ToolsPage;
+export default TrustedPage;

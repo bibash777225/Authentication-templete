@@ -9,12 +9,17 @@ export const ROUTES = {
   tools: {
     base: "/tools",
   },
+  trustedby:{
+    base:"/trusted-by"
+
+  },
   about: {
     Vison: "/vision",
     mission: "/mission",
-    valuessection: {
-      create: "/values-section",
-      edit: "/values-section/edit/:id",
+    valuesitem: {
+      base:"/valueitems",
+      create: "/values-item",
+      edit: "/values-item/edit/:id",
     },
   },
   blog: {

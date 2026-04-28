@@ -20,10 +20,7 @@ export const endpoints = {
     create: "/values-section",
     patch: (id: string | number) => `/values-section${id}`,
   },
-  aboutValuesitem: {
-    getAll: "/values-section",
-    update: (id: string | number) => `/values-section${id}`,
-  },
+
   dashboard: {
     getdata: "/api/dashboard",
   },
@@ -33,6 +30,13 @@ export const endpoints = {
     post: "/tools",
     delete: (id: string | number) => `/tools/${id}`,
     update: (id: string | number) => `/tools/${id}`,
+  },
+  trusted: {
+    get: "/trusted-by",
+    getById: (id: string | number) => `/trusted-by/${id}`,
+    post: "trusted-by",
+    delete: (id: string | number) => `/trusted-by/${id}`,
+    update: (id: string | number) => `/trusted-by/${id}`,
   },
   media: {
     uploadOne: "/media/upload",

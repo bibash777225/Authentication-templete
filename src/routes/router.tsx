@@ -9,7 +9,10 @@ import Providers from "@/provider";
 import Aboutcontent from "@/pages/aboutcontent/aboutcontent";
 import MissionPage from "@/pages/mission/mission-page";
 import VisionPage from "@/pages/vision/vision.page";
+import AboutValuesSectionPage from "@/pages/aboutvalues-section/aboutvaluessection.page";
+import TrustedPage from "@/pages/trusted/trusted-page";
 import ToolsPage from "@/pages/tools/page";
+
 const publicRoutes: RouteObject[] = [
   {
     element: <PublicLayout />,
@@ -44,6 +47,14 @@ const protectedRoutes: RouteObject[] = [
       {
         path: ROUTES.tools.base,
         element: <ToolsPage />,
+      },
+      {
+        path: ROUTES.trustedby.base,
+        element: <TrustedPage/>,
+      },
+      {
+        path: ROUTES.about.valuesitem.base,
+        element: <AboutValuesSectionPage />,
       },
     ],
   },

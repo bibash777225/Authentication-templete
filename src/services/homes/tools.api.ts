@@ -8,7 +8,7 @@ import type {
   IToolUpdateResponseDTO,
   IToolPayloadDTO,
   IGetToolByIdResponseDTO,
-} from "@/types/tools.interface";
+} from "@/types/homes/tools.interface";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 export const useGetAllTools = (params?: GenericPaginationParams) =>

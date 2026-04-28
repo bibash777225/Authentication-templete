@@ -1,5 +1,3 @@
-
-
 import {
   showApiErrorMessage,
   showSuccessMessage,
@@ -9,18 +7,20 @@ import { Controller, useForm } from "react-hook-form";
 import { UseUpdateValuesec } from "@/services/about/values.api";
 import InputField from "@/components/ui/input-field";
 import ImageUploader from "@/components/form/image-input";
-import type { IValueSection } from "@/types/about/values-section.interface";
+
 import CustomTextarea from "@/components/form/textarea";
 import { Button } from "@/components/ui/button";
-import { AboutValueSectionSchema } from "../schema/aboutvaluessection.schema";
+
+import type { IValueItems } from "@/types/about/values-items.interface";
+import { AboutValueItemsSchema } from "../schema/aboutvaluessection.schema";
 type props = {
-  defaultValues?: IValueSection;
+  defaultValues?: IValueItems;
   imageUrl?: string;
 };
 const AboutValuesSectionForm = ({ defaultValues, imageUrl }: props) => {
   const form = useForm({
     defaultValues,
-    resolver: zodResolver(AboutValueSectionSchema),
+    resolver: zodResolver(AboutValueItemsSchema),
   });
 
   const {
@@ -167,4 +167,3 @@ const AboutValuesSectionForm = ({ defaultValues, imageUrl }: props) => {
 };
 
 export default AboutValuesSectionForm;
-

@@ -4,25 +4,27 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useGetToolById, useUpdateTool } from "@/services/homes/tools.api";
-import ToolsForm from "./tools-form";
-import type { IToolData } from "../schema/tools-schema";
+
+
 import {
   showApiErrorMessage,
   showSuccessMessage,
 } from "@/context/lib/helpers/sonner";
 import { Edit, Loader2 } from "lucide-react";
 import { useState } from "react";
+import type { ITrustedData } from "../schema/trusted-schema";
+import { useGetTrustedById, useUpdateTrusted } from "@/services/homes/trusted.api";
+import TrustedForm from "./trusted-form";
 
-const ToolsUpdateDialog: React.FC<{ id: string }> = ({ id }) => {
+const TrustedUpdateDialog: React.FC<{ id: string }> = ({ id }) => {
   const [open, setOpen] = useState(false);
-  const { data, isLoading } = useGetToolById(id);
-  const defaultValues: IToolData = {
+  const { data, isLoading } = useGetTrustedById(id);
+  const defaultValues: ITrustedData = {
     name: data?.data.data.name || "",
-    imageId: data?.data.data.imageId || "",
+    logoId: data?.data.data.logoId || "",
   };
-  const { mutateAsync } = useUpdateTool();
-  const onSubmit = async (data: IToolData) => {
+  const { mutateAsync } = useUpdateTrusted();
+  const onSubmit = async (data: ITrustedData) => {
     try {
       const res = await mutateAsync({ id, data });
       showSuccessMessage(res.data.message);
@@ -48,9 +50,9 @@ const ToolsUpdateDialog: React.FC<{ id: string }> = ({ id }) => {
           </div>
         ) : (
           <div className="bg-gray-50 rounded-lg">
-            <ToolsForm
+            <TrustedForm
               defaultValues={defaultValues}
-              defaultImage={data?.data.data.image}
+              defaultImage={data?.data.data.logo}
               onSubmit={onSubmit}
             />
           </div>
@@ -60,4 +62,4 @@ const ToolsUpdateDialog: React.FC<{ id: string }> = ({ id }) => {
   );
 };
 
-export default ToolsUpdateDialog;
+export default TrustedUpdateDialog;

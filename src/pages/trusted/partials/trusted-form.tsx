@@ -1,17 +1,18 @@
 import React from "react";
-import { toolsSchema, type IToolData } from "../schema/tools-schema";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "@/components/ui/input-field";
 import ImageUploader from "@/components/form/image-input";
 import { Button } from "@/components/ui/button";
 import type { MediaDTO } from "@/types/global.interface";
-interface IToolFormProps {
-  defaultValues?: IToolData;
+import { trustedSchema, type ITrustedData } from "../schema/trusted-schema";
+
+interface ITrustedFormProps {
+  defaultValues?: ITrustedData;
   defaultImage?: MediaDTO | string;
-  onSubmit?: (data: IToolData) => void | Promise<void>;
+  onSubmit?: (data: ITrustedData) => void | Promise<void>;
 }
-const ToolsForm: React.FC<IToolFormProps> = ({
+const TrustedForm: React.FC<ITrustedFormProps> = ({
   defaultValues,
   defaultImage,
   onSubmit,
@@ -23,7 +24,7 @@ const ToolsForm: React.FC<IToolFormProps> = ({
     formState: { errors },
   } = useForm({
     defaultValues,
-    resolver: zodResolver(toolsSchema),
+    resolver: zodResolver(trustedSchema),
   });
   const onFormSubmit = handleSubmit((data) => {
     onSubmit?.(data);
@@ -31,13 +32,13 @@ const ToolsForm: React.FC<IToolFormProps> = ({
   return (
     <form onSubmit={onFormSubmit} className="space-y-6  w-full">
       <label className="block text-sm font-semibold text-gray-700">
-        Tool Name
+        Trusted Name
       </label>
       <div className="space-y-2">
         <InputField
           {...register("name")}
           error={errors.name}
-          placeholder="Enter tool name"
+          placeholder="Enter Trusted Name"
           className="w-full"
         />
         {errors.name && (
@@ -46,11 +47,11 @@ const ToolsForm: React.FC<IToolFormProps> = ({
       </div>
       <div className="space-y-2">
         <label className="block text-sm font-semibold text-gray-700">
-          Tool Image{" "}
+          Trusted Image{" "}
         </label>
         <Controller
           control={control}
-          name="imageId"
+          name="logoId"
           render={({ field, fieldState }) => (
             <ImageUploader
               image={defaultImage}
@@ -71,4 +72,4 @@ const ToolsForm: React.FC<IToolFormProps> = ({
   );
 };
 
-export default ToolsForm;
+export default TrustedForm;

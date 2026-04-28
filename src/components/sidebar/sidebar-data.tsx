@@ -107,7 +107,7 @@ const sidebarData: SidebarData = [
           },
           {
             label: "Value Section",
-            // link: ROUTES.about.valuessection,
+            link: ROUTES.about.valuessection.base,
           },
           {
             label: "Company Info",
@@ -117,16 +117,25 @@ const sidebarData: SidebarData = [
       },
     ],
   },
+  {
+    icon: <ToolCaseIcon />,
+    label: "TrustedBY",
+    children: [
+      {
+        label: "Tools",
+        link: ROUTES.tools.base,
+      },
+      {
+        label: "Trusted",
+        link: ROUTES.trustedby.base,
+      },
+    ],
+  },
 
   {
     icon: <Settings />,
     label: "Site Settings",
     link: ROUTES.orgSettings.base,
-  },
-  {
-    icon: <ToolCaseIcon />,
-    label: "Tools",
-    link: ROUTES.tools.base,
   },
 ];
 export default sidebarData;

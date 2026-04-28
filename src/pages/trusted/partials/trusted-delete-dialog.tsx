@@ -4,11 +4,11 @@ import {
   showSuccessMessage,
 } from "@/context/lib/helpers/sonner";
 import ConfirmationModal from "@/custom/delete-modal";
-import { useDeleteTool } from "@/services/homes/tools.api";
+import { useDeleteTrusted } from "@/services/homes/trusted.api";
 import { Trash2Icon } from "lucide-react";
 
-const ToolsDeleteDialog = ({ id }: { id: string }) => {
-  const { mutateAsync } = useDeleteTool();
+const TrustedDeleteDialog = ({ id }: { id: string }) => {
+  const { mutateAsync } = useDeleteTrusted();
   const onDelete = async () => {
     try {
       const res = await mutateAsync(id);
@@ -28,4 +28,4 @@ const ToolsDeleteDialog = ({ id }: { id: string }) => {
   );
 };
 
-export default ToolsDeleteDialog;
+export default TrustedDeleteDialog;

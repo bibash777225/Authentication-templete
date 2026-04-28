@@ -1,8 +1,5 @@
-import type {
-  ApiResponse,
-  MediaDTO,
-  PaginatedApiResponse,
-} from "./global.interface";
+import type { ApiResponse, MediaDTO, PaginatedApiResponse } from "../global.interface";
+
 
 export interface ITool {
   id: string;

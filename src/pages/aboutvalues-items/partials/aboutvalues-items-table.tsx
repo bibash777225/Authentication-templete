@@ -3,11 +3,11 @@ import type { useValuesSection } from "../hooks/use-values-section";
 import { Card } from "@/components/ui/card";
 import { DataTable } from "@/custom/data-table";
 import { createColumnHelper } from "@tanstack/react-table";
-import type { IValueSection } from "@/types/about/values-section.interface";
 import { ActionPopover } from "@/custom/customPopover/custom-popover";
 import { ROUTES } from "@/routes/routes";
+import type { IValueItems } from "@/types/about/values-items.interface";
 
-const columnHelper = createColumnHelper<IValueSection>();
+const columnHelper = createColumnHelper<IValueItems>();
 
 export const ValuesSectionTable: React.FC<{
   data: ReturnType<typeof useValuesSection>;
@@ -22,7 +22,7 @@ export const ValuesSectionTable: React.FC<{
       cell: ({ row }) => <div>{row.index + 1}</div>,
     }),
 
-    columnHelper.accessor("icon", {
+    columnHelper.accessor("image", {
       header: "Icon",
       cell: ({ getValue }) => {
         const icon = getValue();
@@ -56,7 +56,7 @@ export const ValuesSectionTable: React.FC<{
           onDelete={() => remove(row.original.id)}
           onEdit={() =>
             navigate(
-              ROUTES.about.valuessection.edit.replace(":id", row.original.id),
+              ROUTES.about.valuesitem.edit.replace(":id", row.original.id),
             )
           }
         />
