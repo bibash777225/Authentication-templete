@@ -1,6 +1,10 @@
 import { HttpClient } from "@/context/lib/network/http-client";
 import { endpoints } from "@/core/constant/endpoint";
-import type { IvisionGetResponseDTO, IvisionPatchResponseDTO, IvisionUpdateDTO } from "@/types/about/vision.interface";
+import type {
+  IvisionGetResponseDTO,
+  IvisionPatchResponseDTO,
+  IvisionUpdateDTO,
+} from "@/types/about/vision.interface";
 
 import { useMutation, useQuery } from "@tanstack/react-query";
 

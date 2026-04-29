@@ -1,56 +1,74 @@
 import { HttpClient } from "@/context/lib/network/http-client";
 import { endpoints } from "@/core/constant/endpoint";
 import {
-  type IValueSectionUpdateResponseDTO,
-  type IValueSectionCreateDTO,
-  type IValueSectionUpdateDTO,
-  type IValuessecCreateResponseDTO,
-  type IValuessecResponseDTO,
-} from "@/types/about/values-section.interface";
+  type IValuesItemsCreateResponseDTO,
+  type IValuesItemsUpdateResponseDTO,
+  type IValuesItemsResponseDTO,
+  type IValuesItemsPayloadDTO,
+  type IValuesItemsDeleteResponseDTO,
+} from "@/types/about/values-items.interface";
 import type { GenericPaginationParams } from "@/types/global.interface";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 //get values-section
-export const UseGetAllValuesSecApi = (params?:GenericPaginationParams) =>
+export const UseGetAllValuesItemsApi = (params?: GenericPaginationParams) =>
   useQuery({
-    queryKey: ["valuesection",params],
+    queryKey: ["valuesitems", params],
     queryFn: async () =>
-      await HttpClient.get<IValuessecResponseDTO>(endpoints.aboutValues.get),
+      await HttpClient.get<IValuesItemsResponseDTO>(endpoints.aboutValues.get),
   });
 //post values-section
-export const useCreateValeussec = () => {
+export const useCreateValeusItems = () => {
   const qq = useQueryClient();
   return useMutation({
-    mutationKey: ["valuessection"],
-    mutationFn: async (data: IValueSectionCreateDTO) =>
-      await HttpClient.post<IValuessecCreateResponseDTO>(
-        endpoints.aboutValues.create,
-        data,
-      ),
-      onSuccess:()=>{
-        qq.invalidateQueries({
-            queryKey:["valuessection"],
-        });
-      }
+    
+    mutationFn: async (data: IValuesItemsPayloadDTO) =>
+      await HttpClient.post<IValuesItemsCreateResponseDTO>(endpoints.aboutValues.post,data),
+    onSuccess: () => {
+      qq.invalidateQueries({
+        queryKey: ["valuesitems"],
+      });
+    },
   });
 };
 //update values-section
-export const UseUpdateValuesec = () => {
-    const qq =useQueryClient()
- return useMutation({
-    mutationKey: ["valuesection"],
-    mutationFn: async (data: { id:string|number ,data:IValueSectionUpdateDTO }) =>
-      await HttpClient.patch<IValueSectionUpdateResponseDTO>(
+export const UseUpdateValuesItems = () => {
+  const qq = useQueryClient();
+  return useMutation({
+   
+    mutationFn: async (data: {
+      id: string | number;
+      data: IValuesItemsPayloadDTO;
+    }) =>
+      await HttpClient.patch<IValuesItemsUpdateResponseDTO>(
         endpoints.aboutValues.patch(data.id),
         data.data,
       ),
-    onSuccess: (_,variables) => {
+    onSuccess: (_, variables) => {
       qq.invalidateQueries({
-        queryKey: ["valuessection"],
+        queryKey: ["valuesitems"],
       });
       qq.invalidateQueries({
-        queryKey:["valuessection",variables.id]
-      })
+        queryKey: ["valuesitems", variables.id],
+      });
+    },
+  });
+};
+//delete-value-items
+export const useDeleteValuesItems = () => {
+  const qq = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) =>
+      await HttpClient.delete<IValuesItemsDeleteResponseDTO>(
+        endpoints.aboutValues.delete(id),
+      ),
+    onSuccess: (_, id) => {
+      qq.invalidateQueries({
+        queryKey: ["valuesitems"],
+      });
+      qq.invalidateQueries({
+        queryKey: ["valuesitems", id],
+      });
     },
   });
 };

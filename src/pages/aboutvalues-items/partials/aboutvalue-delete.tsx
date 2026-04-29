@@ -1,13 +1,15 @@
+
 import {
   showApiErrorMessage,
   showSuccessMessage,
 } from "@/context/lib/helpers/sonner";
 import ConfirmationModal from "@/custom/delete-modal";
-import { useDeleteTool } from "@/services/homes/tools.api";
+import { useDeleteValuesItems } from "@/services/about/values.api";
+
 import { Trash2Icon } from "lucide-react";
 
-const ToolsDeleteDialog = ({ id }: { id: string }) => {
-  const { mutateAsync } = useDeleteTool();
+const AboutValuesItemsDeleteDialog = ({ id }: { id: string }) => {
+  const { mutateAsync } = useDeleteValuesItems();
   const onDelete = async () => {
     try {
       const res = await mutateAsync(id);
@@ -27,4 +29,4 @@ const ToolsDeleteDialog = ({ id }: { id: string }) => {
   );
 };
 
-export default ToolsDeleteDialog;
+export default AboutValuesItemsDeleteDialog;

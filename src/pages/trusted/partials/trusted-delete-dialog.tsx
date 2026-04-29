@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+
 import {
   showApiErrorMessage,
   showSuccessMessage,
@@ -20,10 +20,10 @@ const TrustedDeleteDialog = ({ id }: { id: string }) => {
 
   return (
     <ConfirmationModal onConfirm={onDelete}>
-      <Button variant="destructive">
-        <Trash2Icon size={16} />
+      <button className="flex w-full items-center gap-2 px-2 py-1.5 text-sm rounded hover:bg-red-50 text-red-600 transition">
+        <Trash2Icon size={13} />
         Delete
-      </Button>
+      </button>
     </ConfirmationModal>
   );
 };

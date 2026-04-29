@@ -3,7 +3,6 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "@/components/ui/input-field";
 import ImageUploader from "@/components/form/image-input";
-import { Button } from "@/components/ui/button";
 import type { MediaDTO } from "@/types/global.interface";
 import { trustedSchema, type ITrustedData } from "../schema/trusted-schema";
 
@@ -30,8 +29,8 @@ const TrustedForm: React.FC<ITrustedFormProps> = ({
     onSubmit?.(data);
   });
   return (
-    <form onSubmit={onFormSubmit} className="space-y-6  w-full">
-      <label className="block text-sm font-semibold text-gray-700">
+    <form onSubmit={onFormSubmit} className="space-y-4 w-full">
+      <label className="block text-xs font-medium text-gray-600">
         Trusted Name
       </label>
       <div className="space-y-2">
@@ -42,11 +41,11 @@ const TrustedForm: React.FC<ITrustedFormProps> = ({
           className="w-full"
         />
         {errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name.message}</p>
+          <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>
         )}
       </div>
       <div className="space-y-2">
-        <label className="block text-sm font-semibold text-gray-700">
+        <label className="block text-xs font-medium text-gray-600">
           Trusted Image{" "}
         </label>
         <Controller
@@ -67,7 +66,12 @@ const TrustedForm: React.FC<ITrustedFormProps> = ({
           )}
         />
       </div>
-      <Button>Submit</Button>
+      <button
+        type="submit"
+        className="w-full py-2 bg-purple-400 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition mt-2"
+      >
+        Save changes
+      </button>
     </form>
   );
 };

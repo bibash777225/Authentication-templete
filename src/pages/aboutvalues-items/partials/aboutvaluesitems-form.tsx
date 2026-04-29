@@ -1,71 +1,53 @@
-import {
-  showApiErrorMessage,
-  showSuccessMessage,
-} from "@/context/lib/helpers/sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
-import { UseUpdateValuesec } from "@/services/about/values.api";
 import InputField from "@/components/ui/input-field";
 import ImageUploader from "@/components/form/image-input";
-
 import CustomTextarea from "@/components/form/textarea";
 import { Button } from "@/components/ui/button";
+import {
+  AboutValuesItemsSchema,
+  type IValuesItemsData,
+} from "../schema/aboutvaluesitems.schema";
+import type { MediaDTO } from "@/types/global.interface";
 
-import type { IValueItems } from "@/types/about/values-items.interface";
-import { AboutValueItemsSchema } from "../schema/aboutvaluessection.schema";
-type props = {
-  defaultValues?: IValueItems;
-  imageUrl?: string;
-};
-const AboutValuesSectionForm = ({ defaultValues, imageUrl }: props) => {
-  const form = useForm({
-    defaultValues,
-    resolver: zodResolver(AboutValueItemsSchema),
-  });
-
+interface IValuesItemsFormProps {
+  defaultValues?: IValuesItemsData;
+  defaultImage?: MediaDTO | string;
+  onSubmit?: (data: IValuesItemsData) => void | Promise<void>;
+}
+const AboutValuesItemsForm: React.FC<IValuesItemsFormProps> = ({
+  defaultValues,
+  defaultImage,
+  onSubmit,
+}) => {
   const {
     register,
     control,
+    handleSubmit,
     formState: { errors },
-  } = form;
-
-  const { mutateAsync: updateValuesec, isPending } = UseUpdateValuesec();
-
-  const handleSubmit = form.handleSubmit(
-    async (data) => {
-      try {
-        if (!defaultValues?.id) {
-          showApiErrorMessage(new Error("ID is required"));
-          return;
-        }
-        const res = await updateValuesec({
-          id: defaultValues.id,
-          data: data,
-        });
-        showSuccessMessage(res.data.message);
-      } catch (error) {
-        showApiErrorMessage(error);
-      }
-    },
-    (e) => console.log(e),
-  );
-
+  } = useForm({
+    defaultValues,
+    resolver: zodResolver(AboutValuesItemsSchema),
+  });
+  const onFormSubmit = handleSubmit((data) => {
+    onSubmit?.(data);
+  });
   return (
     <div className="rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
       {/*Card Header */}
 
       <div className="border-b border-zinc-200 px-6 py-5 dark:border-zinc-800">
         <h2 className="text-base font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-          Mission
+          Value items
         </h2>
         <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">
-          Update your organisation's mission statement and icon.
+          Update your organisation's value items statement title and icon.
         </p>
       </div>
 
       {/*  Form Body*/}
-      <form onSubmit={handleSubmit} noValidate>
-        <div className="space-y-6 px-6 py-6">
+      <form onSubmit={onFormSubmit} noValidate>
+        <div className="space-y-4 px-6 py-6">
           {/* text input*/}
 
           <div className="space-y-1.5">
@@ -82,20 +64,18 @@ const AboutValuesSectionForm = ({ defaultValues, imageUrl }: props) => {
           {/*image / file uploader*/}
 
           <div className="space-y-1.5">
-            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
-              Icon
-            </label>
+            <label className="text-xs font-medium text-gray-600">Icon</label>
             <Controller
               name="iconId"
               control={control}
               render={({ field, fieldState }) => (
-                <div className="rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-4 transition-colors hover:border-zinc-400 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800/50 dark:hover:border-zinc-600">
+                <div className="rounded-xl  border-zinc-300 bg-zinc-50 p-4 transition-colors hover:border-zinc-400 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800/50 dark:hover:border-zinc-600">
                   <ImageUploader
                     label="Upload Icon"
                     value={field.value || null}
                     onChange={field.onChange}
                     error={fieldState.error}
-                    image={imageUrl}
+                    image={defaultImage}
                   />
                 </div>
               )}
@@ -105,14 +85,14 @@ const AboutValuesSectionForm = ({ defaultValues, imageUrl }: props) => {
           {/*  textarea*/}
 
           <div className="space-y-1.5">
-            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+            <label className="text-xs font-medium text-gray-600">
               Description
             </label>
             <CustomTextarea
               label=""
               {...register("description")}
               error={errors.description}
-              className="w-full rounded-lg border border-zinc-300 bg-zinc-50 px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 transition-colors focus:border-zinc-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500 min-h-[120px] resize-y"
+              className="w-full rounded-lg border border-zinc-300 bg-zinc-50 px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 transition-colors focus:border-zinc-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500 min-h-30 resize-y"
             />
           </div>
         </div>
@@ -127,43 +107,16 @@ const AboutValuesSectionForm = ({ defaultValues, imageUrl }: props) => {
           >
             Cancel
           </Button>
-          <Button
+          <button
             type="submit"
-            disabled={isPending}
-            className="inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-zinc-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
+            className="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition mt-2"
           >
-            {isPending ? (
-              <>
-                {/* Spinner  */}
-                <svg
-                  className="h-4 w-4 animate-spin"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  />
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                  />
-                </svg>
-                Saving…
-              </>
-            ) : (
-              "Save changes"
-            )}
-          </Button>
+            Save changes
+          </button>
         </div>
       </form>
     </div>
   );
 };
 
-export default AboutValuesSectionForm;
+export default AboutValuesItemsForm;

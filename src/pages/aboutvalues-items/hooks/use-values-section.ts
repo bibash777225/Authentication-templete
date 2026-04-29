@@ -1,7 +1,8 @@
-import { UseGetAllValuesSecApi } from "@/services/about/values.api";
+import { UseGetAllValuesItemsApi } from "@/services/about/values.api";
 
-export const useValuesSection = () => {
-  const { data, isLoading } = UseGetAllValuesSecApi(); 
+
+export const useValuesItems = () => {
+  const { data, isLoading } = UseGetAllValuesItemsApi(); 
 
   const remove = (id: string) => {
     console.log("delete", id);

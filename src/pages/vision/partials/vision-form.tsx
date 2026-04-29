@@ -81,7 +81,7 @@ const VisionForm = ({ defaultValues, imageUrl }: Props) => {
               name="iconId"
               control={control}
               render={({ field, fieldState }) => (
-                <div className="rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-4 transition-colors hover:border-zinc-400 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800/50 dark:hover:border-zinc-600">
+                <div className="rounded-xl border border-zinc-300 bg-zinc-50 p-4 transition-colors hover:border-zinc-400 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800/50 dark:hover:border-zinc-600">
                   <ImageUploader
                     label="Upload Icon"
                     value={field.value || null}

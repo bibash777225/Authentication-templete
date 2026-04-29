@@ -4,13 +4,14 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "@/components/ui/input-field";
 import ImageUploader from "@/components/form/image-input";
-import { Button } from "@/components/ui/button";
 import type { MediaDTO } from "@/types/global.interface";
+
 interface IToolFormProps {
   defaultValues?: IToolData;
   defaultImage?: MediaDTO | string;
   onSubmit?: (data: IToolData) => void | Promise<void>;
 }
+
 const ToolsForm: React.FC<IToolFormProps> = ({
   defaultValues,
   defaultImage,
@@ -25,15 +26,17 @@ const ToolsForm: React.FC<IToolFormProps> = ({
     defaultValues,
     resolver: zodResolver(toolsSchema),
   });
+
   const onFormSubmit = handleSubmit((data) => {
     onSubmit?.(data);
   });
+
   return (
-    <form onSubmit={onFormSubmit} className="space-y-6  w-full">
-      <label className="block text-sm font-semibold text-gray-700">
-        Tool Name
-      </label>
-      <div className="space-y-2">
+    <form onSubmit={onFormSubmit} className="space-y-4 w-full">
+      <div className="space-y-1.5">
+        <label className="block text-xs font-medium text-gray-600">
+          Tool Name
+        </label>
         <InputField
           {...register("name")}
           error={errors.name}
@@ -41,12 +44,13 @@ const ToolsForm: React.FC<IToolFormProps> = ({
           className="w-full"
         />
         {errors.name && (
-          <p className="text-red-600 text-sm mt-1">{errors.name.message}</p>
+          <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>
         )}
       </div>
-      <div className="space-y-2">
-        <label className="block text-sm font-semibold text-gray-700">
-          Tool Image{" "}
+
+      <div className="space-y-1.5">
+        <label className="block text-xs font-medium text-gray-600">
+          Tool Image
         </label>
         <Controller
           control={control}
@@ -57,7 +61,7 @@ const ToolsForm: React.FC<IToolFormProps> = ({
               {...field}
               error={
                 fieldState.error && (
-                  <p className="text-red-600 text-sm mt-2">
+                  <p className="text-xs text-red-500 mt-1">
                     {fieldState.error.message}
                   </p>
                 )
@@ -66,7 +70,13 @@ const ToolsForm: React.FC<IToolFormProps> = ({
           )}
         />
       </div>
-      <Button>Submit</Button>
+
+      <button
+        type="submit"
+        className="w-full py-2 bg-purple-400 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition mt-2"
+      >
+        Save changes
+      </button>
     </form>
   );
 };

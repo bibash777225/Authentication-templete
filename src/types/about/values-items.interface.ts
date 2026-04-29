@@ -1,30 +1,26 @@
 import type { ApiResponse, MediaDTO } from "../global.interface";
 
-export interface IValueItems {
+export interface IValuesItems {
   id: string;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
   sectionId: string;
-  image: MediaDTO |null;
-  imageId: string |null;
+  icon: MediaDTO ;
+  iconId: string ;
   title: string;
   description: string;
   order: number;
 }
-export interface IValueItemsCreateDTO {
-    id: string;
-    title: string;
-    description: string;
-}
 
-export interface IValueItemsUpdateDTO {
-  imageId: string;
+export interface IValuesItemsPayloadDTO {
   title: string;
-  description: string;
+  iconId?: string | null;
+  description:string;
 }
 
 
-export type IValueItemsResponseDTO=ApiResponse<IValueItems[]>
-export type IValuesItemsCreateResponseDTO=ApiResponse<null>
-export type IValueItemsUpdateResponseDTO=ApiResponse<null>
+export type IValuesItemsResponseDTO = ApiResponse<IValuesItems[]>;
+export type IValuesItemsCreateResponseDTO = ApiResponse<null>;
+export type IValuesItemsUpdateResponseDTO = ApiResponse<null>;
+export type IValuesItemsDeleteResponseDTO = ApiResponse<null>;

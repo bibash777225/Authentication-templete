@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router";
-import type { useValuesSection } from "../hooks/use-values-section";
+import type { useValuesItems } from "../hooks/use-values-section";
 import { Card } from "@/components/ui/card";
 import { DataTable } from "@/custom/data-table";
 import { createColumnHelper } from "@tanstack/react-table";
 import { ActionPopover } from "@/custom/customPopover/custom-popover";
 import { ROUTES } from "@/routes/routes";
-import type { IValueItems } from "@/types/about/values-items.interface";
+import type { IValuesItems } from "@/types/about/values-items.interface";
 
-const columnHelper = createColumnHelper<IValueItems>();
 
-export const ValuesSectionTable: React.FC<{
-  data: ReturnType<typeof useValuesSection>;
+const columnHelper = createColumnHelper<IValuesItems>();
+
+export const ValuesItemsTable: React.FC<{
+  data: ReturnType<typeof useValuesItems>;
 }> = ({ data }) => {
   const { isLoading, remove, valueSectionData } = data;
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export const ValuesSectionTable: React.FC<{
       cell: ({ row }) => <div>{row.index + 1}</div>,
     }),
 
-    columnHelper.accessor("image", {
+    columnHelper.accessor("icon", {
       header: "Icon",
       cell: ({ getValue }) => {
         const icon = getValue();

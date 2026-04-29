@@ -16,9 +16,10 @@ export const endpoints = {
     patch: `/vision`,
   },
   aboutValues: {
-    get: `/values-section`,
-    create: "/values-section",
-    patch: (id: string | number) => `/values-section${id}`,
+    get: `/value-items`,
+    post: "/value-items",
+    patch: (id: string | number) => `/value-items/${id}`,
+    delete: (id: string | number) => `/value-items/${id}`,
   },
 
   dashboard: {
@@ -34,7 +35,7 @@ export const endpoints = {
   trusted: {
     get: "/trusted-by",
     getById: (id: string | number) => `/trusted-by/${id}`,
-    post: "trusted-by",
+    post: "/trusted-by",
     delete: (id: string | number) => `/trusted-by/${id}`,
     update: (id: string | number) => `/trusted-by/${id}`,
   },

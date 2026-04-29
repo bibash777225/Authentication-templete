@@ -33,9 +33,9 @@ const ToolsPage = () => {
         return (
           <Popover>
             <PopoverTrigger>
-              <EllipsisVertical />
+                <EllipsisVertical/>
             </PopoverTrigger>
-            <PopoverContent>
+            <PopoverContent >
               <ToolsUpdateDialog id={row.original.id} />
               <ToolsDeleteDialog id={row.original.id} />
             </PopoverContent>

@@ -106,8 +106,8 @@ const sidebarData: SidebarData = [
             link: ROUTES.about.Vison,
           },
           {
-            label: "Value Section",
-            link: ROUTES.about.valuessection.base,
+            label: "Value Items",
+            link: ROUTES.about.valuesitem.base,
           },
           {
             label: "Company Info",

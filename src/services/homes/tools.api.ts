@@ -64,7 +64,7 @@ export const useDeleteTool = () => {
     onSuccess: (_, id) => {
       qq.invalidateQueries({
         queryKey: ["tools"],
-      });
+      }); 
       qq.invalidateQueries({
         queryKey: ["tools", id],
       });
