@@ -110,8 +110,8 @@ const sidebarData: SidebarData = [
             link: ROUTES.about.valuesitem.base,
           },
           {
-            label: "Company Info",
-            // link: ROUTES.about.valuessection,
+            label: "Team Member",
+             link: ROUTES.about.Teammembers.base,
           },
         ],
       },

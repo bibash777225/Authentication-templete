@@ -6,11 +6,12 @@ import PrivateLayout from "@/components/layouts/private-layout";
 import Dashboard from "@/pages/dashboard/dashboard";
 import MainLayout from "@/components/layouts/main-layout";
 import Providers from "@/provider";
-import MissionPage from "@/pages/mission/mission-page";
-import VisionPage from "@/pages/vision/vision.page";
-import TrustedPage from "@/pages/trusted/trusted-page";
-import ToolsPage from "@/pages/tools/tool-page";
-import AboutValuesItemsPage from "@/pages/aboutvalues-items/aboutvaluesitems.page";
+import MissionPage from "@/pages/about/mission/mission-page";
+import VisionPage from "@/pages/about/vision/vision.page";
+import TrustedPage from "@/pages/homes/trusted/trusted-page";
+import ToolsPage from "@/pages/homes/tools/tool-page";
+import AboutValuesItemsPage from "@/pages/about/aboutvalues-items/aboutvaluesitems.page";
+import MemberPage from "@/pages/about/team-members/members-page";
 
 const publicRoutes: RouteObject[] = [
   {
@@ -52,6 +53,11 @@ const protectedRoutes: RouteObject[] = [
         path: ROUTES.about.valuesitem.base,
         element: <AboutValuesItemsPage />,
       },
+      {
+        path: ROUTES.about.Teammembers.base,
+        element: <MemberPage/>,
+      },
+      
     ],
   },
 ];

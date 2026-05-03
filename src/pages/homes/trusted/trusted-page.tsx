@@ -19,13 +19,14 @@ const columnHelper = createColumnHelper<ITrusted>();
 const TrustedPage = () => {
   const { data: trustedData } = useGetAllTrusted();
   const columns = [
+    
     columnHelper.accessor("name", {}),
     columnHelper.accessor("logo", {
       cell: ({ getValue }) => (
         <img
           crossOrigin="anonymous"
           src={imageUrl(getValue())}
-          className="size-6"
+          className="size-6 "
         />
       ),
     }),
@@ -38,7 +39,7 @@ const TrustedPage = () => {
               <EllipsisVertical />
             </PopoverTrigger>
             <PopoverContent>
-              <TrustedUpdateDialog id={row.original.id} />
+              <TrustedUpdateDialog  id={row.original.id} />
               <TrustedDeleteDialog id={row.original.id} />
             </PopoverContent>
           </Popover>

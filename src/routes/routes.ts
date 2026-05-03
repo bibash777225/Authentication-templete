@@ -21,6 +21,9 @@ export const ROUTES = {
       create: "/values-item",
       edit: "/values-item/edit/:id",
     },
+    Teammembers:{
+      base:"/team-members",
+    }
   },
   blog: {
     base: "/all-blog",

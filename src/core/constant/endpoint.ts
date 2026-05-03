@@ -8,20 +8,25 @@ export const endpoints = {
     profile: "/auth/me",
   },
   aboutMission: {
-    get: `/mission`,
-    patch: `/mission`,
+    get: "/mission",
+    patch: "/mission",
   },
   aboutVision: {
-    get: `/vision`,
-    patch: `/vision`,
+    get: "/vision",
+    patch: "/vision",
   },
   aboutValues: {
-    get: `/value-items`,
+    get: "/value-items",
     post: "/value-items",
     patch: (id: string | number) => `/value-items/${id}`,
     delete: (id: string | number) => `/value-items/${id}`,
   },
-
+  TeamMembers: {
+    get: "/team-members",
+    post: "/team-members",
+    patch: (id: string | number) => `/team-members/${id}`,
+    delete: (id: string | number) => `/team-members/${id}`,
+  },
   dashboard: {
     getdata: "/api/dashboard",
   },

@@ -1,7 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
-import { VisionSchema, type IVisionData } from "../schema/vision-schema";
+import { MissionSchema, type IMissionData } from "../schema/mission-schema";
 import InputField from "@/components/ui/input-field";
+import { useUpdateMission } from "@/services/about/mission.api";
 import {
   showApiErrorMessage,
   showSuccessMessage,
@@ -9,17 +10,16 @@ import {
 import { Button } from "@/components/ui/button";
 import CustomTextarea from "@/components/form/textarea";
 import ImageUploader from "@/components/form/image-input";
-import { useUpdateVision } from "@/services/about/vision.api";
 
 type Props = {
-  defaultValues?: IVisionData;
+  defaultValues?: IMissionData;
   imageUrl?: string;
 };
 
-const VisionForm = ({ defaultValues, imageUrl }: Props) => {
+const MissionForm = ({ defaultValues, imageUrl }: Props) => {
   const form = useForm({
     defaultValues,
-    resolver: zodResolver(VisionSchema),
+    resolver: zodResolver(MissionSchema),
   });
 
   const {
@@ -28,12 +28,12 @@ const VisionForm = ({ defaultValues, imageUrl }: Props) => {
     formState: { errors },
   } = form;
 
-  const { mutateAsync: updateVision, isPending } = useUpdateVision();
+  const { mutateAsync: updateMission, isPending } = useUpdateMission();
 
   const handleSubmit = form.handleSubmit(
     async (data) => {
       try {
-        const res = await updateVision(data);
+        const res = await updateMission(data);
         showSuccessMessage(res.data.message);
       } catch (error) {
         showApiErrorMessage(error);
@@ -43,15 +43,16 @@ const VisionForm = ({ defaultValues, imageUrl }: Props) => {
   );
 
   return (
+   
     <div className="rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
       {/*Card Header */}
-
+      
       <div className="border-b border-zinc-200 px-6 py-5 dark:border-zinc-800">
-        <h1 className="text-base font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-          Vision
-        </h1>
+        <h2 className="text-base font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+          Mission
+        </h2>
         <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">
-          Update your organisation's Vision statement and icon.
+          Update your organisation's mission statement and icon.
         </p>
       </div>
 
@@ -59,7 +60,7 @@ const VisionForm = ({ defaultValues, imageUrl }: Props) => {
       <form onSubmit={handleSubmit} noValidate>
         <div className="space-y-6 px-6 py-6">
           {/* text input*/}
-
+       
           <div className="space-y-1.5">
             <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
               Title
@@ -72,7 +73,7 @@ const VisionForm = ({ defaultValues, imageUrl }: Props) => {
           </div>
 
           {/*image / file uploader*/}
-
+         
           <div className="space-y-1.5">
             <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
               Icon
@@ -95,13 +96,12 @@ const VisionForm = ({ defaultValues, imageUrl }: Props) => {
           </div>
 
           {/*  textarea*/}
-
+          
           <div className="space-y-1.5">
             <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
               Description
             </label>
-            <CustomTextarea
-              label=""
+            <CustomTextarea label=""
               {...register("description")}
               error={errors.description}
               className="w-full rounded-lg border border-zinc-300 bg-zinc-50 px-3.5 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 transition-colors focus:border-zinc-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900/10 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500 min-h-[120px] resize-y"
@@ -110,7 +110,7 @@ const VisionForm = ({ defaultValues, imageUrl }: Props) => {
         </div>
 
         {/*Card Footer*/}
-
+    
         <div className="flex items-center justify-end gap-3 rounded-b-2xl border-t border-zinc-200 bg-zinc-50 px-6 py-4 dark:border-zinc-800 dark:bg-zinc-900">
           <Button
             type="button"
@@ -122,7 +122,7 @@ const VisionForm = ({ defaultValues, imageUrl }: Props) => {
           <Button
             type="submit"
             disabled={isPending}
-            className="inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-zinc-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
+            className="inline-flex items-center gap-2 rounded-lg bg-violet-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-purple-500  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-50 dark:text-white-900 dark:hover:bg-violet-600"
           >
             {isPending ? (
               <>
@@ -158,4 +158,4 @@ const VisionForm = ({ defaultValues, imageUrl }: Props) => {
   );
 };
 
-export default VisionForm;
+export default MissionForm;

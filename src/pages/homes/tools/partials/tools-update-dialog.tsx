@@ -39,7 +39,7 @@ const ToolsUpdateDialog: React.FC<{ id: string }> = ({ id }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button className="flex w-full items-center gap-2 px-2 py-1.5 text-sm rounded hover:bg-violet-200 text-gray-700 transition">
+        <button className="flex w-full items-center gap-2 px-2 py-1.5 text-sm rounded hover:bg-violet-100 text-gray-700 transition">
           <Edit size={13} />
           Edit
         </button>
