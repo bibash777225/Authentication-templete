@@ -12,6 +12,9 @@ import TrustedPage from "@/pages/homes/trusted/trusted-page";
 import ToolsPage from "@/pages/homes/tools/tool-page";
 import AboutValuesItemsPage from "@/pages/about/aboutvalues-items/aboutvaluesitems.page";
 import MemberPage from "@/pages/about/team-members/members-page";
+import ContactPage from "@/pages/contact/contact-page";
+import BlogPage from "@/pages/blog/blog-page";
+
 
 const publicRoutes: RouteObject[] = [
   {
@@ -56,6 +59,14 @@ const protectedRoutes: RouteObject[] = [
       {
         path: ROUTES.about.Teammembers.base,
         element: <MemberPage/>,
+      },
+      {
+        path: ROUTES.contact.base,
+        element: <ContactPage/>,
+      },
+      {
+        path: ROUTES.blog.base,
+        element: <BlogPage/>,
       },
       
     ],

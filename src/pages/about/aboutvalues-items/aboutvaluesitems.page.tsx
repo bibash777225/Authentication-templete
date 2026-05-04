@@ -19,23 +19,25 @@ const ValuesItemsPage = () => {
   const items = valueItemData?.data?.data || [];
   console.log("API DATA:", valueItemData);
   const columns = [
-    columnHelper.accessor("title", {}),
+    columnHelper.accessor("title", {
+      header: "Title",
+      cell: ({ getValue }) => <span className="font-semibold">{getValue()}</span>,
+    }),
     columnHelper.accessor("description", {}),
 
     columnHelper.accessor("icon", {
       cell: ({ getValue }) => {
         const icon = getValue();
-        if (icon){
-
-            return (
-              <img
-                crossOrigin="anonymous"
-                src={imageUrl(icon)}
-                className="size-6"
-              />
-            );
-        }else{
-            return "not found";
+        if (icon) {
+          return (
+            <img
+              crossOrigin="anonymous"
+              src={imageUrl(icon)}
+              className="size-6"
+            />
+          );
+        } else {
+          return "not found";
         }
       },
     }),

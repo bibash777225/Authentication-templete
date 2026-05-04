@@ -10,7 +10,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetVision = () =>
   useQuery({
-    queryKey: ["mission"],
+    queryKey: ["vision"],
     queryFn: () =>
       HttpClient.get<IvisionGetResponseDTO>(endpoints.aboutVision.get),
   });

@@ -51,12 +51,12 @@ const sidebarData: SidebarData = [
   {
     icon: <Users />,
     label: "Team",
-    link: ROUTES.team.base,
+    link: ROUTES.about.Teammembers.base,
   },
   {
     icon: <Contact2 />,
     label: "Contact Us",
-    link: ROUTES.contactUs.base,
+    link: ROUTES.contact.base,
   },
   {
     icon: <ScrollTextIcon />,
@@ -109,10 +109,7 @@ const sidebarData: SidebarData = [
             label: "Value Items",
             link: ROUTES.about.valuesitem.base,
           },
-          {
-            label: "Team Member",
-             link: ROUTES.about.Teammembers.base,
-          },
+         
         ],
       },
     ],

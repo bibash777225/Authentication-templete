@@ -21,6 +21,13 @@ export const endpoints = {
     patch: (id: string | number) => `/value-items/${id}`,
     delete: (id: string | number) => `/value-items/${id}`,
   },
+  blog: {
+    get: "/blogs",
+    create: "/blogs",
+    byId: (id: string | number) => `/blogs/${id}`,
+    update: (id: string | number) => `/api/blog/${id}`,
+    delete: (id: string | number) => `/api/blog/${id}`,
+  },
   TeamMembers: {
     get: "/team-members",
     post: "/team-members",
@@ -29,6 +36,9 @@ export const endpoints = {
   },
   dashboard: {
     getdata: "/api/dashboard",
+  },
+  contact: {
+    get: "/contact",
   },
   tools: {
     get: "/tools",

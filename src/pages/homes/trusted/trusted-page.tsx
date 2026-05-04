@@ -20,7 +20,12 @@ const TrustedPage = () => {
   const { data: trustedData } = useGetAllTrusted();
   const columns = [
     
-    columnHelper.accessor("name", {}),
+    columnHelper.accessor("name", {
+      header:"NAME",
+      cell:({getValue})=><span className="font-semibold">
+        {getValue()}
+      </span>
+    }),
     columnHelper.accessor("logo", {
       cell: ({ getValue }) => (
         <img

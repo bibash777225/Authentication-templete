@@ -25,6 +25,9 @@ export const ROUTES = {
       base:"/team-members",
     }
   },
+  contact:{
+    base:"/contact"
+  },
   blog: {
     base: "/all-blog",
     view: "/blog/details/:id",

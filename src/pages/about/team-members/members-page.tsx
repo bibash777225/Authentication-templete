@@ -19,7 +19,10 @@ const MemberPage = () => {
   const items = TeamMemberData?.data?.data || [];
   console.log("API DATA:", TeamMemberData);
   const columns = [
-    columnHelper.accessor("name", {}),
+    columnHelper.accessor("name", {
+      header: "Name",
+      cell: ({ getValue }) => <span className="font-semibold">{getValue()}</span>,
+    }),
     columnHelper.accessor("position", {}),
 
     columnHelper.accessor("image", {

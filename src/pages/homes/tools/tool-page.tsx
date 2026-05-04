@@ -17,7 +17,12 @@ const columnHelper = createColumnHelper<ITool>();
 const ToolsPage = () => {
   const { data: toolsData } = useGetAllTools();
   const columns = [
-    columnHelper.accessor("name", {}),
+    columnHelper.accessor("name", {
+      header: "Name",
+      cell: ({ getValue }) => (
+        <span className="font-semibold">{getValue()}</span>
+      ),
+    }),
     columnHelper.accessor("image", {
       cell: ({ getValue }) => (
         <img
@@ -33,9 +38,9 @@ const ToolsPage = () => {
         return (
           <Popover>
             <PopoverTrigger>
-                <EllipsisVertical/>
+              <EllipsisVertical />
             </PopoverTrigger>
-            <PopoverContent >
+            <PopoverContent>
               <ToolsUpdateDialog id={row.original.id} />
               <ToolsDeleteDialog id={row.original.id} />
             </PopoverContent>
