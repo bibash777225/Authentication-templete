@@ -9,11 +9,13 @@ export interface IBlog {
   title: string;
   slug: string;
   shortDescription: string;
-  featuredImage: MediaDTO;
+  featuredImage: MediaDTO | null;
+  featuredImageID: string;
   author: IBlogAuthor;
   readTime: string;
   publishedAt: string;
   category: IBlogCategory;
+  content: string;
 }
 
 export interface IBlogAuthor {
@@ -27,14 +29,17 @@ export interface IBlogCategory {
   slug: string;
 }
 export type IBlogResponseDTO = PaginatedApiResponse<IBlog>;
-export type IBlogSingleResponseDTO = ApiResponse<IBlog>;
 export type IBlogCreateResponseDTO = ApiResponse<null>;
 export type IBlogUpadateResponseDTO = ApiResponse<null>;
 export type IBlogDeleteResponseDTO = ApiResponse<null>;
 
-
-export interface IBlogPayLoad{
-    title:string;
-    featuredImage?:string
-    content:string
+export interface IBlogPayLoadDTO {
+  title: string;
+  featuredImageId?: string;
+  categoryId?: string | null;
+  content: string;
+  slug: string;
+  shortDescription: string;
+  seoTitle?: string | null;
+  seoDescription?: string | null;
 }

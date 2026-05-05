@@ -1,49 +1,42 @@
 import ImageUploader from "@/components/form/image-input";
-
-import { MultipleSelect } from "@/components/form/multiple-select";
-import RichTextEditor from "@/components/form/rich-text-editor";
-import SelectDropdown from "@/components/form/select-dropdown";
-
-import { useGetAllUsers } from "@/services/user.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
-import { blogFormSchema, type BlogFormData } from "../schemas/blog-schema";
+
 import InputField from "@/components/ui/input-field";
 
+import type { MediaDTO } from "@/types/global.interface";
+import { blogFormSchema, type IBlogFormData } from "../schemas/blog-schema";
+import { useNavigate } from "react-router";
 
-const BlogForm: React.FC<{
-  defaultValues?: Partial<BlogFormData>;
-  onSubmit?: (d: BlogFormData) => Promise<void> | void;
-  previewUrl?: string;
-}> = ({ onSubmit, defaultValues, previewUrl }) => {
-  const form = useForm<BlogFormData>({
+
+interface IBlogFormProps {
+  defaultValues?: IBlogFormData;
+  defaultImage?: MediaDTO | string;
+  onSubmit?: (data: IBlogFormData) => void | Promise<void>;
+}
+const BlogForm: React.FC<IBlogFormProps> = ({
+  defaultValues,
+  defaultImage,
+  onSubmit,
+}) => {
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors,isSubmitting },
+  } = useForm({
     defaultValues,
     resolver: zodResolver(blogFormSchema),
   });
-
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors, isSubmitting },
-  } = form;
-  const { data: categories } = useGetAllBlogCategory();
-  const { data: tags } = useGetAllBlogTags();
-  const { data: users } = useGetAllUsers();
-  console.log(users?.data.data);
-
-  const navigate = useNavigate();
+  const onFormSubmit = handleSubmit((data) => {
+    
+    onSubmit?.(data);
+  });
+  const navigate=useNavigate()
 
   return (
-    <form
-      onSubmit={handleSubmit(
-        async (d) => await onSubmit?.(d),
-        (e) => console.error(e),
-      )}
-      className="gap-4 xl:grid grid-cols-3"
-    >
+    <form onSubmit={onFormSubmit} className="gap-4 xl:grid grid-cols-3">
       <div className="sm:col-span-3 xl:col-span-2 bg-white shadow-sm p-6 rounded-lg">
         <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
           <div className="md:col-span-2">
@@ -56,7 +49,7 @@ const BlogForm: React.FC<{
                   value={field.value}
                   onChange={field.onChange}
                   error={fieldState.error}
-                  image={previewUrl}
+                  image={defaultImage}
                 />
               )}
             />
@@ -72,28 +65,9 @@ const BlogForm: React.FC<{
           </div>
 
           <div>
-            <Controller
-              name="categoryId"
-              control={form.control}
-              render={({ field, fieldState: { error } }) => (
-                <SelectDropdown
-                  options={
-                    categories?.data.data?.map((d) => ({
-                      label: d.categoryName,
-                      value: d.id,
-                    })) || []
-                  }
-                  label="Blog Category"
-                  {...field}
-                  value={field.value || ""}
-                  onChange={(v) => field.onChange(v || undefined)}
-                  error={error}
-                  required
-                />
-              )}
-            />
+          
           </div>
-          <div>
+          {/* <div>
             <Controller
               name="tagIds"
               control={form.control}
@@ -114,7 +88,7 @@ const BlogForm: React.FC<{
                 />
               )}
             />
-          </div>
+          </div> */}
 
           <div>
             <InputField
@@ -124,48 +98,13 @@ const BlogForm: React.FC<{
               required
             />
           </div>
-          <div>
-            <Controller
-              name="authorId"
-              control={form.control}
-              render={({ field, fieldState: { error } }) => (
-                <SelectDropdown
-                  options={
-                    users?.data.data?.map((d) => ({
-                      label: d.fullName,
-                      value: d.id,
-                    })) || []
-                  }
-                  label="Blog Author"
-                  {...field}
-                  value={field.value || ""}
-                  onChange={(v) => field.onChange(v || undefined)}
-                  error={error}
-                  required
-                />
-              )}
-            />
-          </div>
+          
           <div>
             <InputField
               label="Short Description"
-              {...register("shortDesc")}
-              error={errors.shortDesc?.message}
+              {...register("shortDescription")}
+              error={errors.shortDescription?.message}
               required
-            />
-          </div>
-          <div className="lg:col-span-2">
-            <Controller
-              {...register(`longDesc`)}
-              control={form.control}
-              render={({ field, fieldState: { error } }) => (
-                <RichTextEditor
-                  label="Description"
-                  value={field.value || ""}
-                  onChange={field.onChange}
-                  error={error?.message}
-                />
-              )}
             />
           </div>
         </div>
@@ -182,11 +121,18 @@ const BlogForm: React.FC<{
                 {...register("seoTitle")}
                 error={errors?.seoTitle?.message}
               />
-
+              <div className="md:col-span-2">
+                <InputField
+                  label="Content"
+                  {...register("content")}
+                  error={errors.content?.message}
+                  required
+                />
+              </div>
               <InputField
                 label="SEO Description"
-                {...register("seoDesc")}
-                error={errors?.seoDesc?.message}
+                {...register("seoDescription")}
+                error={errors?.seoDescription?.message}
               />
             </div>
           </div>

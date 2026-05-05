@@ -1,7 +1,7 @@
 import { HttpClient } from "@/context/lib/network/http-client";
 import { endpoints } from "@/core/constant/endpoint";
 import type {
-    ITeamMemberDeleteResponseDTO,
+  ITeamMemberDeleteResponseDTO,
   ITeamMemberPayLoadDTO,
   ITeamMemberPostResponseDTO,
   ITeamMemberResponseDTO,
@@ -36,7 +36,7 @@ export const useCreateMembers = () => {
 //Update team members
 export const useUpdateMemebers = () => {
   const qq = useQueryClient();
-   return useMutation({
+  return useMutation({
     mutationFn: async (data: {
       id: string | number;
       data: ITeamMemberPayLoadDTO;
@@ -45,11 +45,11 @@ export const useUpdateMemebers = () => {
         endpoints.TeamMembers.patch(data.id),
         data.data,
       ),
-      onSuccess:(_,variables)=>{
-        qq.invalidateQueries({
-            queryKey:["members",variables.id],
-        })
-      }
+    onSuccess: (_, variables) => {
+      qq.invalidateQueries({
+        queryKey: ["members", variables.id],
+      });
+    },
   });
 };
 // delete team members
@@ -70,6 +70,3 @@ export const useDeleteMembers = () => {
     },
   });
 };
-
-
-

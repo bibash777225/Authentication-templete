@@ -1,8 +1,12 @@
-
 import { HttpClient } from "@/context/lib/network/http-client";
 import { endpoints } from "@/core/constant/endpoint";
-import type { BlogFormData } from "@/pages/blog/schemas/blog-schema";
-import type { IBlogCreateResponseDTO, IBlogDeleteResponseDTO, IBlogResponseDTO, IBlogSingleResponseDTO, IBlogUpadateResponseDTO } from "@/types/blog/blog-interface";
+import type {
+  IBlogCreateResponseDTO,
+  IBlogDeleteResponseDTO,
+  IBlogPayLoadDTO,
+  IBlogResponseDTO,
+  IBlogUpadateResponseDTO,
+} from "@/types/blog/blog-interface";
 import type { GenericPaginationParams } from "@/types/global.interface";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -15,20 +19,11 @@ export const useGetAllBlogApi = (params?: GenericPaginationParams) =>
       }),
   });
 
-//get by id
-export const useGetBlogById = (id: string | number) =>
-  useQuery({
-    queryKey: ["blog", id],
-    queryFn: async () =>
-      await HttpClient.get<IBlogSingleResponseDTO>(endpoints.blog.byId(id)),
-  });
-
 //post blog
 export const useCreateBlog = () => {
   const qq = useQueryClient();
   return useMutation({
-    mutationKey: ["blog"],
-    mutationFn: async (data: BlogFormData) =>
+    mutationFn: async (data: IBlogPayLoadDTO) =>
       await HttpClient.post<IBlogCreateResponseDTO>(
         endpoints.blog.create,
         data,
@@ -46,10 +41,7 @@ export const useUpdateBlog = () => {
   const qq = useQueryClient();
 
   return useMutation({
-    mutationFn: async (data: {
-      id: string | number;
-      data: Partial<BlogFormData>;
-    }) =>
+    mutationFn: async (data: { id: string | number; data: IBlogPayLoadDTO }) =>
       await HttpClient.patch<IBlogUpadateResponseDTO>(
         endpoints.blog.update(data.id),
         data.data,
@@ -65,7 +57,7 @@ export const useUpdateBlog = () => {
 export const useDeleteBlog = () => {
   const qq = useQueryClient();
 
-  return useMutation({ 
+  return useMutation({
     mutationKey: ["blog"],
     mutationFn: async (id: string | number) =>
       await HttpClient.delete<IBlogDeleteResponseDTO>(

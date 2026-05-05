@@ -1,30 +1,36 @@
 
-import { ROUTES } from "@/routes/routes";
 import { useCreateBlog } from "@/services/blog/blog.api";
-import { useNavigate } from "react-router";
-import BlogForm from "./blog-form";
 import { showApiErrorMessage, showSuccessMessage } from "@/context/lib/helpers/sonner";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Plus } from "lucide-react";
+import { useState } from "react";
+import type { IBlogFormData } from "../schemas/blog-schema";
+import BlogForm from "./blog-form";
 
 
-const BlogCreatePage = () => {
-  const blogMutation = useCreateBlog();
-  const navigate = useNavigate();
+const BlogCreateDialog = () => {
+  const [open, setOpen] = useState(false);
+  const { mutateAsync } = useCreateBlog();
+  const onSubmit = async (data: IBlogFormData) => {
+    try {
+      const res = await mutateAsync(data);
+      showSuccessMessage(res.data.message);
+    } catch (error) {
+      showApiErrorMessage(error);
+    }
+  };
 
   return (
-    <div>
-      <BlogForm
-        onSubmit={async (d) => {
-          try {
-            const res = await blogMutation.mutateAsync(d);
-            showSuccessMessage(res.data.message);
-            navigate(ROUTES.blog.base);
-          } catch (e) {
-            showApiErrorMessage(e);
-          }
-        }}
-      />
-    </div>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger className="bg-violet-600 text-white px-1 py-1 pr-3 mb-2 mt-2 rounded-lg   font-serif text-md shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-2">
+        <Plus size={15} />
+        Add Items
+      </DialogTrigger>
+      <DialogContent>
+        <BlogForm onSubmit={onSubmit} />
+      </DialogContent>
+    </Dialog>
   );
 };
 
-export default BlogCreatePage;
+export default BlogCreateDialog;
